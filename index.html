@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กรอบสมรรถนะทางการเงิน (Financial Competency) สำหรับวัย 16-18 ปี</title>
+    <!-- Google Fonts: Sarabun -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Color Scheme */
+            --blue-primary: #1E40AF; /* น้ำเงิน */
+            --blue-light: #EFF6FF;
+            --green-primary: #059669; /* เขียว */
+            --green-light: #ECFDF5;
+            --gold-primary: #D97706; /* ทอง */
+            --gold-light: #FEF3C7;
+            --gray-light: #F3F4F6;
+            --gray-dark: #374151;
+            --text-main: #1F2937;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--gray-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* 1. Header Section */
+        .header {
+            background: linear-gradient(135deg, var(--blue-primary), var(--green-primary));
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold-primary);
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background-color: var(--gold-primary);
+            color: var(--white);
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .content-wrapper {
+            padding: 30px;
+        }
+
+        /* 2. Financial Characteristics Card */
+        .char-card {
+            background-color: var(--blue-light);
+            border-left: 6px solid var(--blue-primary);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .char-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .char-card h3 {
+            color: var(--blue-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .char-list {
+            list-style: none;
+        }
+
+        .char-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .char-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green-primary);
+            font-weight: bold;
+        }
+
+        /* 3. K-S-A Interactive Tabs */
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--blue-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .tabs-container {
+            margin-bottom: 40px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--gray-light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gray-dark);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .tab-btn.active {
+            background-color: var(--green-primary);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            background-color: var(--green-light);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content h4 {
+            color: var(--green-primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--green-primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .tab-content ul {
+            padding-left: 20px;
+        }
+
+        .tab-content li {
+            margin-bottom: 10px;
+        }
+
+        /* 4. Sub-competency Section (Accordion) */
+        .accordion-container {
+            margin-bottom: 40px;
+        }
+
+        details {
+            background-color: var(--white);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease;
+        }
+
+        details:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        summary {
+            padding: 18px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--blue-primary);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9fafb;
+            transition: background-color 0.3s ease;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary {
+            background-color: var(--blue-light);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding: 20px;
+            background-color: var(--white);
+            color: var(--gray-dark);
+            animation: slideDown 0.3s ease;
+        }
+
+        /* 5. Activity Ideas Section */
+        .activities-container {
+            margin-bottom: 30px;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .activity-card {
+            background-color: var(--white);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border-bottom: 4px solid var(--gold-primary);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background-color: var(--gold-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+        }
+
+        .activity-card h4 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .activity-card p {
+            color: var(--gray-dark);
+            font-size: 0.95rem;
+        }
+
+        /* 6. Key Message Banner */
+        .key-message {
+            background: linear-gradient(135deg, var(--gold-primary), #F59E0B);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-message::before {
+            content: '"';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: -20px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .key-message h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Icons SVG Styles */
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .icon-sm { width: 24px; height: 24px; }
+        .icon-md { width: 36px; height: 36px; }
+        .icon-lg { width: 48px; height: 48px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .header h2 { font-size: 1rem; }
+            .content-wrapper { padding: 20px; }
+            .section-title { font-size: 1.5rem; }
+            .key-message h3 { font-size: 1.2rem; }
+            .tab-btn { padding: 10px 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 1. Header Section -->
+        <header class="header">
+            <div class="header-icon">
+                <!-- Wallet/Money Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg text-white" style="color: white; width: 40px;">
+                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                </svg>
+            </div>
+            <h1>สมรรถนะทางการเงิน</h1>
+            <h2>Financial Competency Framework</h2>
+            <div class="age-badge">ช่วงวัย 16 – 18 ปี (ม.ปลาย)</div>
+        </header>
+
+        <div class="content-wrapper">
+            
+            <!-- 2. Financial Characteristics Card -->
+            <section class="char-card">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4"></path>
+                        <path d="M12 8h.01"></path>
+                    </svg>
+                    บริบทและความสำคัญของช่วงวัย (Life Stage Context)
+                </h3>
+                <p style="margin-bottom: 10px;">วัยนี้เป็นรอยต่อสำคัญระหว่างการเรียนรู้ขั้นพื้นฐานและการก้าวเข้าสู่โลกของผู้ใหญ่และการทำงาน โดยมีลักษณะเด่นดังนี้:</p>
+                <ul class="char-list">
+                    <li>เริ่มมีประสบการณ์และ<strong>ต้องรับผิดชอบการใช้จ่ายเงินของตนเองมากขึ้น</strong></li>
+                    <li>เริ่มแสดง<strong>เอกลักษณ์ส่วนบุคคล (Identity)</strong></li>
+                    <li>มีความเข้าใจในความชอบและความถนัดของตนเองอย่างชัดเจน</li>
+                    <li>ส่งผลโดยตรงต่อ<strong>การวางแผนอาชีพและรายได้ในอนาคต</strong></li>
+                </ul>
+            </section>
+
+            <!-- 3. K-S-A Interactive Tabs -->
+            <section class="tabs-container">
+                <h2 class="section-title">องค์ประกอบการเรียนรู้ (K-S-A)</h2>
+                
+                <div class="tab-buttons">
+                    <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'Knowledge')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        Knowledge (ความรู้)
+                    </button>
+                    <button class="tab-btn" onclick="openTab(event, 'Skills')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        Skills (ทักษะ)
+                    </button>
+                    <button class="tab-btn" onclick="openTab(event, 'Attitudes')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        Attitudes (ทัศนคติ)
+                    </button>
+                </div>
+
+                <div id="Knowledge" class="tab-content" style="display: block;">
+                    <h4>ความรู้ที่ต้องมี (Knowledge)</h4>
+                    <ul>
+                        <li>มีความเข้าใจเรื่องอัตราแลกเปลี่ยนเงินตราต่างประเทศ และความผันผวนของค่าเงิน</li>
+                        <li>เข้าใจบทบาทของหน่วยงานในระบบเศรษฐกิจการเงินและการคลัง</li>
+                        <li>เข้าใจพื้นฐานเรื่องภาษี แหล่งรายได้ของรัฐ รวมถึงสวัสดิการที่จะได้รับจากอาชีพ</li>
+                        <li>เข้าใจการคำนวณดอกเบี้ยทบต้น และเริ่มศึกษาการลงทุนในสินทรัพย์ดิจิทัล</li>
+                        <li>ตระหนักรู้ถึงผลกระทบของรอยเท้าดิจิทัล (Digital Footprint)</li>
+                    </ul>
+                </div>
+
+                <div id="Skills" class="tab-content">
+                    <h4>ทักษะที่ต้องฝึกฝน (Skills)</h4>
+                    <ul>
+                        <li>สามารถวางแผนการออมเผื่อฉุกเฉินและการออมระยะยาวได้</li>
+                        <li>ทักษะการรู้เท่าทันกลยุทธ์การตลาดและโฆษณา ไม่ตกเป็นเหยื่อของการชักจูง</li>
+                        <li>รู้วิธีจัดการและรับมืออย่างถูกต้องเมื่อตกเป็นเหยื่อของมิจฉาชีพในโลกออนไลน์</li>
+                        <li>ความสามารถในการสืบค้นแหล่งข้อมูลผลิตภัณฑ์ทางการเงินที่เป็นกลางและเชื่อถือได้</li>
+                        <li>ความสามารถในการติดต่อและขอคำปรึกษาจากหน่วยงานกำกับดูแล</li>
+                    </ul>
+                </div>
+
+                <div id="Attitudes" class="tab-content">
+                    <h4>ทัศนคติที่ควรปลูกฝัง (Attitudes)</h4>
+                    <ul>
+                        <li>มองว่าการเสียภาษีคือหน้าที่สำคัญของพลเมืองที่มีความรับผิดชอบ</li>
+                        <li>ตระหนักถึงอันตรายและความเสี่ยงร้ายแรงของการกู้ยืมเงินนอกระบบ</li>
+                        <li>มีเจตคติที่รอบคอบในการใช้จ่าย (เช่น รู้จักเปรียบเทียบข้อดีข้อเสียระหว่างการซื้อเงินผ่อนกับเงินสด)</li>
+                        <li>เห็นความสำคัญของการตั้งเป้าหมายทางการเงินและการเตรียมพร้อมสู่ชีวิตผู้ใหญ่</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 4. Sub-competency Section -->
+            <section class="accordion-container">
+                <h2 class="section-title">สมรรถนะทางการเงิน 6 ด้านหลัก</h2>
+                <p style="text-align: center; margin-bottom: 20px; color: var(--gray-dark);">คลิกที่หัวข้อเพื่อดูความคาดหวังที่ยกระดับขึ้นจากวัยเด็ก</p>
+                
+                <details>
+                    <summary>1. ความเข้าใจเรื่องเงินและระบบเศรษฐกิจ</summary>
+                    <div class="details-content">
+                        ไม่เพียงแค่รู้จักค่าของเงิน แต่ต้องเข้าใจเรื่อง <strong>อัตราแลกเปลี่ยนเงินตราต่างประเทศ ความผันผวนของค่าเงิน</strong> และเข้าใจภาพรวมถึง <strong>บทบาทของหน่วยงานในระบบเศรษฐกิจการเงินและการคลัง</strong>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>2. การจัดการรายได้และภาษี</summary>
+                    <div class="details-content">
+                        ถูกคาดหวังให้เข้าใจพื้นฐานเรื่อง <strong>ภาษีในฐานะหน้าที่พลเมือง</strong> และแหล่งรายได้ของรัฐ รวมถึงการนำปัจจัยเรื่อง <strong>สวัสดิการและสิทธิประโยชน์ที่จะได้รับ</strong> มาเป็นส่วนหนึ่งในการพิจารณาเลือกอาชีพ
+                    </div>
+                </details>
+
+                <details>
+                    <summary>3. การบริหารการใช้จ่ายและหนี้สิน</summary>
+                    <div class="details-content">
+                        ต้อง <strong>รู้เท่าทันกลยุทธ์การตลาดและโฆษณา</strong> เพื่อไม่ให้ตกเป็นเหยื่อของการชักจูงให้ใช้จ่ายเกินตัว และที่สำคัญต้องเข้าใจความเสี่ยงและอันตรายของ <strong>หนี้นอกระบบ</strong> อย่างชัดเจน
+                    </div>
+                </details>
+
+                <details>
+                    <summary>4. การออมและการลงทุน</summary>
+                    <div class="details-content">
+                        ขยายขอบเขตจากการออมธรรมดาไปสู่การเข้าใจเรื่อง <strong>ดอกเบี้ยทบต้น</strong> การวางแผนเงินออมเผื่อฉุกเฉิน และเป็นวัยที่เริ่มศึกษาเรียนรู้เรื่องการลงทุนใน <strong>สินทรัพย์ดิจิทัล</strong>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>5. ภัยทางการเงินและโลกดิจิทัล</summary>
+                    <div class="details-content">
+                        ต้องตระหนักถึงผลกระทบของ <strong>รอยเท้าดิจิทัล (Digital Footprint)</strong> ที่อาจถูกนำไปใช้ในทางที่ไม่เหมาะสมหรือเพื่อการโฆษณา และต้อง <strong>รู้วิธีจัดการเมื่อตกเป็นเหยื่อมิจฉาชีพ</strong>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>6. สิทธิและหน้าที่</summary>
+                    <div class="details-content">
+                        รู้จัก <strong>แหล่งข้อมูลผลิตภัณฑ์ทางการเงินที่เป็นกลางและเชื่อถือได้</strong> และรู้จักหน่วยงานกำกับดูแลต่างๆ ที่สามารถเข้าไปขอความช่วยเหลือหรือขอคำปรึกษาได้เมื่อมีปัญหา
+                    </div>
+                </details>
+            </section>
+
+            <!-- 5. Activity Ideas Section -->
+            <section class="activities-container">
+                <h2 class="section-title">แนวทางการเรียนรู้ (Active Learning)</h2>
+                <p style="text-align: center; margin-bottom: 10px; color: var(--gray-dark);">การพัฒนาสมรรถนะวัยนี้ ต้องเน้นกระบวนการให้ผู้เรียนมีส่วนร่วมและลงมือปฏิบัติจริง และสามารถบูรณาการข้ามวิชาได้</p>
+                
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <!-- Monitor/Simulation Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-md"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h4>สถานการณ์จำลอง (Simulation)</h4>
+                        <p>การลองวางแผนใช้จ่ายภายใต้ข้อจำกัดรายได้ หรือจำลองการเลือกเส้นทางอาชีพพร้อมฝึกคำนวณภาษีเบื้องต้น</p>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <!-- Project Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-md"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+                        </div>
+                        <h4>แบบโครงงาน (Project-Based)</h4>
+                        <p>ทำโครงงานวางแผนการออมระยะยาว ที่บูรณาการเรื่องการลงทุน (เช่น ดอกเบี้ยทบต้น) และการวางแผนภาษีเข้าด้วยกัน</p>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <!-- Discussion Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-md"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <h4>การอภิปราย (Critical Discussion)</h4>
+                        <p>ฝึกถกเถียงและสะท้อนความคิดในหัวข้อใกล้ตัว เช่น "เงินผ่อนกับเงินสดอะไรดีกว่ากัน" เพื่อปลูกฝังเจตคติที่รอบคอบ</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Key Message Banner -->
+            <section class="key-message">
+                <h3>วัย 16 – 18 ปี คือช่วงเวลาแห่งการสร้าง "ภูมิคุ้มกันทางการเงิน" <br> และ "ความเป็นพลเมืองที่รับผิดชอบ" ก่อนเข้าสู่ระดับอุดมศึกษา</h3>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // Tab Interaction Logic
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Hide all tab contents
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            // Remove active class from all buttons
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            // Show the current tab and add active class to the button
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
